@@ -1,18 +1,62 @@
-const path = require("path");
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-	// context: path.resolve(__dirname, "../demo"),
-	entry: {
-		app: "./demo.js"
-	},
-	devtool: "cheap-eval-source-map",
-	devServer: {
-		contentBase: "./demo",
-		publicPath: "./demo/"
-	},
-	plugins: [],
-	output: {
-		filename: "tabs.js",
-		path: path.resolve(__dirname, "dist")
-	}
+    entry: [
+        './demo/demo.js'
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            {
+                test: /(\.css|\.scss|\.sass)$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }, {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => [
+                                require('autoprefixer')
+                            ],
+                            sourceMap: true
+                        }
+                    }, {
+                        loader: 'sass-loader',
+                        options: {
+                            includePaths: [path.resolve(__dirname, '/', 'scss')],
+                            sourceMap: true
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    resolve: {
+        extensions: ['*', '.js', '.jsx']
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
+        filename: 'bundle.js'
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
+            __DEV__: true
+        }),
+        new webpack.HotModuleReplacementPlugin()
+    ],
+    devServer: {
+        contentBase: './demo',
+        hot: true
+    },
 };
