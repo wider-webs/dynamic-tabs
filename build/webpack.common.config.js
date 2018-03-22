@@ -1,5 +1,4 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
 
 module.exports = {
     entry: [
@@ -47,16 +46,5 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
         filename: 'bundle.js'
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
-            __DEV__: true
-        }),
-        new webpack.HotModuleReplacementPlugin()
-    ],
-    devServer: {
-        contentBase: './demo',
-        hot: true
     },
 };
