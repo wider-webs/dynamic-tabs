@@ -7,7 +7,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     output: {
         path: path.resolve('./', 'demo'),
         publicPath: '/demo',
-        filename: 'bundle.js'
+        filename: 'built.js'
     }
 });
 
