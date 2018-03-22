@@ -31,7 +31,7 @@ module.exports = {
                     }, {
                         loader: 'sass-loader',
                         options: {
-                            includePaths: [path.resolve(__dirname, '/', 'scss')],
+                            includePaths: [path.resolve('./', 'scss')],
                             sourceMap: true
                         }
                     }
@@ -43,8 +43,8 @@ module.exports = {
         extensions: ['*', '.js', '.jsx']
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/',
+        path: path.resolve('./', 'dist'),
+        publicPath: '/dist',
         filename: 'bundle.js'
     },
 };

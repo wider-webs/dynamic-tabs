@@ -8,6 +8,7 @@ const webpackConfig = merge(baseWebpackConfig, {
 
     devServer: {
         contentBase: './demo',
+        publicPath: '/dist',
         hot: true
     },
 
