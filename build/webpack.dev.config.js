@@ -5,7 +5,36 @@ const baseWebpackConfig = require('./webpack.common.config');
 
 const webpackConfig = merge(baseWebpackConfig, {
 
-
+    module:{
+        rules: [
+            {
+                test: /(\.css|\.scss|\.sass)$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }, {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => [
+                                require('autoprefixer')
+                            ],
+                            sourceMap: true
+                        }
+                    }, {
+                        loader: 'sass-loader',
+                        options: {
+                            includePaths: [path.resolve('./', 'scss')],
+                            sourceMap: true
+                        }
+                    }
+                ]
+            }
+        ]
+    },
     devServer: {
         contentBase: './demo',
         publicPath: '/dist',
