@@ -11,32 +11,6 @@ module.exports = {
                 exclude: /node_modules/,
                 use: ['babel-loader']
             },
-            {
-                test: /(\.css|\.scss|\.sass)$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    }, {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: () => [
-                                require('autoprefixer')
-                            ],
-                            sourceMap: true
-                        }
-                    }, {
-                        loader: 'sass-loader',
-                        options: {
-                            includePaths: [path.resolve('./', 'scss')],
-                            sourceMap: true
-                        }
-                    }
-                ]
-            }
         ]
     },
     resolve: {

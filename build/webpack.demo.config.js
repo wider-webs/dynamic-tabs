@@ -1,14 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge')
-const baseWebpackConfig = require('./webpack.common.config');
+const prodWebpackConfig = require('./webpack.prod.config');
 
-const webpackConfig = merge(baseWebpackConfig, {
+const webpackConfig = merge(prodWebpackConfig, {
     output: {
         path: path.resolve('./', 'demo'),
-        publicPath: '/demo',
+        publicPath: '../demo',
         filename: 'built.js'
-    }
+    },
 });
 
 module.exports = webpackConfig;
